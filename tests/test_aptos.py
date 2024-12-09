@@ -1,5 +1,6 @@
 import pytest
 from aptos_agent.agents.portfolio import get_account_balances
+from aptos_agent.agents.unusual_activity import get_account_transactions
 
 
 @pytest.fixture
@@ -12,6 +13,14 @@ def valid_account():
 @pytest.fixture
 def invalid_account():
     return {"account_address": "invalid_address"}
+
+
+def test_get_account_transactions_success(valid_account):
+    """Test successful retrieval of account transactions."""
+    response = get_account_transactions(valid_account)
+    assert response is not None
+    assert isinstance(response, str)
+    assert "Successfully" in response
 
 
 def test_get_account_balances_success(valid_account):

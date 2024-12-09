@@ -19,9 +19,9 @@ init_agents(portfolio_agent, unusual_activity_agent)
 triage_agent = Agent(
     name="Financial Services Triage Agent",
     instructions="""You are a triage agent for financial services on Aptos blockchain.
+    - If there is no account address in the context variables, call the get_account_address function
     - For questions about token balances and portfolio analysis, transfer to the portfolio agent
     - For questions about transaction history and unusual activity monitoring, transfer to the unusual activity agent
-    - If there is no account address in the context variables, call the get_account_address function
     Be helpful and guide users to the right specialized agent.""",
     functions=[
         transfer_to_portfolio,
@@ -42,7 +42,7 @@ def main():
     print(f"Account address update: {account_address_response}")
     print(f"Context variables: {context_variables}")
 
-    run_demo_loop(triage_agent, context_variables, stream=True, debug=True)
+    run_demo_loop(triage_agent, context_variables, stream=True, debug=False)
 
 
 if __name__ == "__main__":
