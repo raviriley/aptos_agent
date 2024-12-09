@@ -64,3 +64,8 @@ def format_lint_test() -> None:
     lint()
     print(f"🧪 {TextStyle.UNDERLINE}Running tests...{TextStyle.END}")
     test()
+
+
+def dev() -> None:
+    """Runs the agent."""
+    subprocess.run("python aptos_agent/run.py", shell=True, text=True)

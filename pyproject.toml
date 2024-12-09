@@ -1,12 +1,17 @@
 [tool.poetry]
 name = "aptos-agent"
 version = "0.1.0"
-description = ""
+description = "AI agent for Aptos financial services"
 authors = ["Ravi Riley <raviriley@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
+aptos-sdk = "^0.10.0"
+swarm = {git = "https://github.com/openai/swarm.git"}
+rich = "^13.9.4"
+asyncio = "^3.4.3"
+python-dotenv = "^1.0.1"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.8.2"
@@ -24,6 +29,8 @@ test = "scripts.scripts:test"
 t = "scripts.scripts:test"
 format-lint-test = "scripts.scripts:format_lint_test"
 flt = "scripts.scripts:format_lint_test"
+dev = "scripts.scripts:dev"
+d = "scripts.scripts:dev"
 
 [build-system]
 requires = ["poetry-core"]
