@@ -3,7 +3,6 @@ from aptos_sdk.async_client import IndexerClient
 from rich.console import Console
 from rich.table import Table
 from aptos_agent.agents.transfers import (
-    transfer_to_unusual_activity,
     get_account_address,
 )
 import asyncio
@@ -67,6 +66,6 @@ portfolio_agent = Agent(
     instructions="""You are a portfolio analysis agent that helps users understand their token balances on Aptos.
     When asked about balances, use the get_account_balances() function to fetch and display them.
     If users ask about transaction history or unusual activity, transfer them to the unusual activity agent.
-    If the user supplies an account address or asks for information about a new account address, call the get_account_address() function.""",
-    functions=[get_account_balances, transfer_to_unusual_activity, get_account_address],
+    If the user supplies an account address or asks for information about a new account address, call the get_account_address function.""",
+    functions=[get_account_balances, get_account_address],
 )

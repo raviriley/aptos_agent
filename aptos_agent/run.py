@@ -13,7 +13,12 @@ from agents.transfers import (
 
 load_dotenv()
 
+# Initialize the transfer functions
 init_agents(portfolio_agent, unusual_activity_agent)
+
+# Add transfer functions after initialization
+portfolio_agent.functions.append(transfer_to_unusual_activity)
+unusual_activity_agent.functions.append(transfer_to_portfolio)
 
 
 triage_agent = Agent(

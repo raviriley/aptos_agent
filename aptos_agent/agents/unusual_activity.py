@@ -2,8 +2,8 @@ from swarm import Agent
 from aptos_sdk.async_client import IndexerClient
 from rich.console import Console
 from rich.table import Table
-from aptos_agent.agents.transfers import transfer_to_portfolio
 import asyncio
+from aptos_agent.agents.transfers import get_account_address
 
 console = Console()
 
@@ -76,9 +76,10 @@ async def _get_account_transactions(context_variables):
 unusual_activity_agent = Agent(
     name="Unusual Activity Agent",
     instructions="""You are an unusual activity monitoring agent that helps users review their transaction history on Aptos.
-    When asked about transactions or unusual activity, use the get_account_transactions() function to fetch and display them.
+    1. Call the get_account_address function if the user supplies an account address, asks for information about a new account address, or if there is no account address in the context variables.
+    2. When asked about transactions or unusual activity, use the get_account_transactions() function to fetch and display them.
     If there are a large number of frozen transactions, alert the user.
     If there are sequential transactions by transaction version, alert the user.
     If users ask about token balances, transfer them to the portfolio agent.""",
-    functions=[get_account_transactions, transfer_to_portfolio],
+    functions=[get_account_transactions, get_account_address],
 )

@@ -2,25 +2,39 @@ from rich.prompt import Prompt
 from swarm.core import Result
 
 # This will store all agent transfer functions
-portfolio_agent = None
-unusual_activity_agent = None
+_portfolio_agent = None
+_unusual_activity_agent = None
 
 
 def init_agents(portfolio, unusual):
     """Initialize agent references"""
-    global portfolio_agent, unusual_activity_agent
-    portfolio_agent = portfolio
-    unusual_activity_agent = unusual
+    global _portfolio_agent, _unusual_activity_agent
+    _portfolio_agent = portfolio
+    _unusual_activity_agent = unusual
 
 
-def transfer_to_portfolio():
+def transfer_to_portfolio(context_variables):
     """Transfer to the portfolio analysis agent."""
-    return portfolio_agent
+    if _portfolio_agent is None:
+        raise RuntimeError("Portfolio agent not initialized. Call init_agents first.")
+    return Result(
+        value="Successfully transferred to portfolio agent",
+        context_variables=context_variables,
+        agent=_portfolio_agent,
+    )
 
 
-def transfer_to_unusual_activity():
+def transfer_to_unusual_activity(context_variables):
     """Transfer to the unusual activity monitoring agent."""
-    return unusual_activity_agent
+    if _unusual_activity_agent is None:
+        raise RuntimeError(
+            "Unusual activity agent not initialized. Call init_agents first."
+        )
+    return Result(
+        value="Successfully transferred to unusual activity agent",
+        context_variables=context_variables,
+        agent=_unusual_activity_agent,
+    )
 
 
 def get_account_address():
