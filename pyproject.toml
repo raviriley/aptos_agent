@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "aptos-agent"
+version = "0.1.0"
+description = ""
+authors = ["Ravi Riley <raviriley@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.8.2"
+mypy = "^1.13.0"
+pytest = "^8.3.4"
+
+[tool.poetry.scripts]
+lint = "scripts.scripts:lint"
+l = "scripts.scripts:lint"
+format = "scripts.scripts:format_code"
+f = "scripts.scripts:format_code"
+format-lint = "scripts.scripts:format_and_lint"
+fl = "scripts.scripts:format_and_lint"
+test = "scripts.scripts:test"
+t = "scripts.scripts:test"
+format-lint-test = "scripts.scripts:format_lint_test"
+flt = "scripts.scripts:format_lint_test"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
